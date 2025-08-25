@@ -6,7 +6,6 @@ from src.utils.paths import TMP_DOWNLOADS, ensure_dirs
 from src.utils.logger import log_event
 from src.relatorios.r_bases import mover_para_bases_keepname
 
-# Arquivos esperados (prefixo do nome)
 EXPECTED = [
     "Painel geral de demandas",
     "Demandas canceladas",
@@ -25,11 +24,23 @@ def pick_latest_by_prefix(folder: Path, prefix: str) -> Optional[Path]:
     )
     return cand[0] if cand else None
 
-if __name__ == "__main__":
+def run() -> dict:
+    """
+    Move os 4 arquivos extras p/ Bases Comuns.
+    Retorna {"ok": N, "miss": M}
+    """
     ensure_dirs()
+    ok = miss = 0
     for prefix in EXPECTED:
         f = pick_latest_by_prefix(TMP_DOWNLOADS, prefix)
         if f is None:
             log_event("MISS", f"{prefix}*", "Downloads")
+            miss += 1
             continue
-        mover_para_bases_keepname(f)  # log BASES é feito dentro da função
+        mover_para_bases_keepname(f)  # já loga BASES
+        ok += 1
+    return {"ok": ok, "miss": miss}
+
+if __name__ == "__main__":
+    out = run()
+    print("R_BASES:", out)
