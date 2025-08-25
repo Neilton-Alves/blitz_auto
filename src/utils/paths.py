@@ -2,9 +2,9 @@ from pathlib import Path
 
 # === Caminhos alvo (se mudar a raiz, só ajuste REDE_BASE) ===
 REDE_BASE        = Path(r"R:\User\bases\Relatórios sydle")
-BASES_COMUNS     = REDE_BASE / "Bases Comuns SYDLE"     # sobrescreve a cada novo download (usa "{nome} # {dd.mm.aa}{ext}")
-MAIS_ATUAL       = REDE_BASE / "01 - mais atual"        # 1 por dia (#{dd.mm.aa})
-RELATORIOS_HIST  = REDE_BASE / "01 - historico"         # histórico (#{dd.mm.aa}-x)
+BASES_COMUNS     = REDE_BASE / "Bases Comuns SYDLE"   # sobrescreve a cada novo download ("{nome} # {dd.mm.aa}{ext}")
+MAIS_ATUAL       = REDE_BASE / "01 - mais atual"      # 1 por dia ("{nome} # {dd.mm.aa}{ext}")
+RELATORIOS_HIST  = REDE_BASE / "01 - historico"       # histórico ("{nome} # {dd.mm.aa}-x{ext}")
 
 # Log geral da automação (TXT)
 LOG_PATH         = Path(r"R:\User\bases\Logs automação\log sydle.txt")
